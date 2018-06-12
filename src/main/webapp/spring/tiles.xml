@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="DefaultTemplate"
+                template="/WEB-INF/pages/template.jsp">
+        <put-attribute name="title" value="" />
+        <put-attribute name="header" value="/WEB-INF/pages/header.jsp" />
+        <put-attribute name="body" value=""/>
+        <put-attribute name="footer" value="/WEB-INF/pages/footer.jsp" />
+    </definition>
+
+    <definition name="registration" extends="DefaultTemplate">
+        <put-attribute name="title" value="Register new user"/>
+        <put-attribute name="body" value="/WEB-INF/pages/registration_page.jsp"/>
+    </definition>
+
+    <definition name="home" extends="DefaultTemplate">
+        <put-attribute name="title" value="Simple Shop"/>
+        <put-attribute name="body" value="/WEB-INF/pages/index.jsp"/>
+    </definition>
+
+    <definition name="login" extends="DefaultTemplate">
+        <put-attribute name="title" value="Login"/>
+        <put-attribute name="body" value="/WEB-INF/pages/login-page.jsp"/>
+    </definition>
+
+    <definition name="category" extends="DefaultTemplate">
+        <put-attribute name="title" value="Category"/>
+        <put-attribute name="body" value="/WEB-INF/pages/category-page.jsp"/>
+    </definition>
+
+    <definition name="product" extends="DefaultTemplate">
+        <put-attribute name="title" value="Product"/>
+        <put-attribute name="body" value="/WEB-INF/pages/product-page.jsp"/>
+    </definition>
+
+    <definition name="cart" extends="DefaultTemplate">
+        <put-attribute name="title" value="Cart"/>
+        <put-attribute name="body" value="/WEB-INF/pages/cart-page.jsp"/>
+    </definition>
+
+    <definition name="admin" extends="DefaultTemplate">
+        <put-attribute name="title" value="Admin panel"/>
+        <put-attribute name="body" value="/WEB-INF/pages/admin-page.jsp"/>
+    </definition>
+
+    <definition name="admuseredit" extends="DefaultTemplate">
+        <put-attribute name="title" value="User Edit"/>
+        <put-attribute name="body" value="/WEB-INF/pages/adm_useredit-page.jsp"/>
+    </definition>
+
+    <definition name="admproductedit" extends="DefaultTemplate">
+        <put-attribute name="title" value="Product Edit"/>
+        <put-attribute name="body" value="/WEB-INF/pages/adm-productedit-page.jsp"/>
+    </definition>
+
+    <definition name="admseparateuseredit" extends="DefaultTemplate">
+        <put-attribute name="title" value="Edit user"/>
+        <put-attribute name="body" value="/WEB-INF/pages/adm_editseparateuser-page.jsp"/>
+    </definition>
+
+    <definition name="admseparateprodedit" extends="DefaultTemplate">
+        <put-attribute name="title" value="Edit Product"/>
+        <put-attribute name="body" value="/WEB-INF/pages/adm_editseparateproduct-page.jsp"/>
+    </definition>
+
+    <definition name="admcategoryedit" extends="DefaultTemplate">
+        <put-attribute name="title" value="Category Edit"/>
+        <put-attribute name="body" value="/WEB-INF/pages/adm-categoryedit-page.jsp"/>
+    </definition>
+
+    <definition name="admseparatecatedit" extends="DefaultTemplate">
+        <put-attribute name="title" value="Edit Category"/>
+        <put-attribute name="body" value="/WEB-INF/pages/adm-editseparcategory-page.jsp"/>
+    </definition>
+
+</tiles-definitions>
