@@ -22,7 +22,7 @@
 - Validation. Auxiliary classes for validating forms.
 - Webapp resources (css, images, js, pages, configuration)
 
-MySQL database is stored on a remote server. All you need to configure the program on your PC - change the root folder of the project location in the `productImageUpload` method of `ProductServiceImpl` class and configure Apache Tomcat Server.
+MySQL database is stored on a remote server. All you need to configure the program on your PC - Internet connection, change the root folder of the project location in the `productImageUpload` method of `ProductServiceImpl` class and configure Apache Tomcat Server.
 
 Video demonstration of program functionality - [Link](https://youtu.be/cLUOYdsESG0)
 

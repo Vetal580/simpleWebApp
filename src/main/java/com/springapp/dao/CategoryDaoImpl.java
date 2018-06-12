@@ -94,10 +94,20 @@ public class CategoryDaoImpl implements CategoryDao{
     public void addCategory(Category category){
         String addCategory = "INSERT INTO categories (id, name) VALUES(?, ?)";
         try(Connection connection = dataSource.getConnection()){
-            PreparedStatement statement = connection.prepareStatement(addCategory);
-            statement.setString(1, category.getCategoryId());
-            statement.setString(2, category.getCategoryName());
-            statement.executeUpdate();
+            connection.setAutoCommit(false);
+
+            try(PreparedStatement statement = connection.prepareStatement(addCategory)){
+                statement.setString(1, category.getCategoryId());
+                statement.setString(2, category.getCategoryName());
+                statement.executeUpdate();
+                connection.commit();
+                connection.close();
+
+            } catch (SQLException ex){
+                ex.printStackTrace();
+                connection.rollback();
+                connection.setAutoCommit(true);
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }

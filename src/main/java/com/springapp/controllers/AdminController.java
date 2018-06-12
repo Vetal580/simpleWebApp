@@ -43,13 +43,12 @@ public class AdminController {
 
     @RequestMapping(value = "/admin", method = RequestMethod.POST)
     public String addProduct(@ModelAttribute("admAddProduct") @Validated Product product, BindingResult result, Model model) throws IOException {
+        LinkedHashMap<String, String> inStockList = productServiceImpl.getInStockList();
         if (result.hasErrors()){
-            LinkedHashMap<String, String> inStockList = productServiceImpl.getInStockList();
             model.addAttribute("categoriesList", categoryServiceImpl.getCategoriesMap());
             model.addAttribute("inStockList", inStockList);
             return "admin";
         } else {
-            LinkedHashMap<String, String> inStockList = productServiceImpl.getInStockList();
             model.addAttribute("categoriesList", categoryServiceImpl.getCategoriesMap());
             model.addAttribute("inStockList", inStockList);
             List<String> uploadImages = productServiceImpl.productImageUpload(product);
@@ -86,17 +85,15 @@ public class AdminController {
 
     @RequestMapping(value = "/edit-product/{id}", method = RequestMethod.POST)
     public String editProductResult(@ModelAttribute ("productedit") @Validated Product product, BindingResult result, Model model){
+        LinkedHashMap<String, String> categoryList = categoryServiceImpl.getCategoriesMap();
+        LinkedHashMap<String, String> inStockList = productServiceImpl.getInStockList();
         if (result.hasErrors()){
-            LinkedHashMap<String, String> categoryList = categoryServiceImpl.getCategoriesMap();
-            LinkedHashMap<String, String> inStockList = productServiceImpl.getInStockList();
             model.addAttribute("categoryList", categoryList);
             model.addAttribute("inStockList", inStockList);
             return "admseparateprodedit";
         } else {
             productServiceImpl.updateProduct(product);
             model.addAttribute("updated", "Product was successful updated!");
-            LinkedHashMap<String, String> categoryList = categoryServiceImpl.getCategoriesMap();
-            LinkedHashMap<String, String> inStockList = productServiceImpl.getInStockList();
             model.addAttribute("categoryList", categoryList);
             model.addAttribute("inStockList", inStockList);
             return "admseparateprodedit";
