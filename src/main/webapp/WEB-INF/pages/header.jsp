@@ -1,7 +1,7 @@
 <%@ include file="library.jsp"%>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom: 5px">
-    <a class="navbar-brand" href="/">SOMBRA</a>
+    <a class="navbar-brand" href="/">SHOP</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
