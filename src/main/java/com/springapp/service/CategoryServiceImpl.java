@@ -1,6 +1,6 @@
 package com.springapp.service;
 
-import com.springapp.dao.CategoryDaoImpl;
+import com.springapp.dao.CategoryDao;
 import com.springapp.model.Category;
 import com.springapp.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,46 +12,46 @@ import java.util.List;
 @Service
 public class CategoryServiceImpl implements CategoryService{
     @Autowired
-    CategoryDaoImpl categoryDaoImpl;
+    CategoryDao categoryDao;
 
     @Override
     public LinkedHashMap<String, String> getCategoriesMap(){
-        LinkedHashMap<String, String> categoryMap = (LinkedHashMap<String, String>) categoryDaoImpl.categoriesMap();
+        LinkedHashMap<String, String> categoryMap = (LinkedHashMap<String, String>) categoryDao.categoriesMap();
         return categoryMap;
     }
 
     @Override
     public void addProduct(Product product){
-        categoryDaoImpl.addNewProduct(product);
+        categoryDao.addNewProduct(product);
     }
 
     @Override
     public List<Category> getCategoryList(){
-        return categoryDaoImpl.getCategoryList();
+        return categoryDao.getCategoryList();
     }
 
     @Override
     public void addCategory(Category category){
-        categoryDaoImpl.addCategory(category);
+        categoryDao.addCategory(category);
     }
 
     @Override
     public void deleteCategory(String id){
-        categoryDaoImpl.deleteCategory(id);
+        categoryDao.deleteCategory(id);
     }
 
     @Override
     public Category getCategoryById(String id){
-        return categoryDaoImpl.getCategoryById(id);
+        return categoryDao.getCategoryById(id);
     }
 
     @Override
     public void updateCategory(Category category){
-        categoryDaoImpl.updateCategory(category);
+        categoryDao.updateCategory(category);
     }
 
     @Override
     public int categoryValidation(String categoryName){
-        return categoryDaoImpl.categoryValidator(categoryName);
+        return categoryDao.categoryValidator(categoryName);
     }
 }

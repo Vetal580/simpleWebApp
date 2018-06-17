@@ -26,7 +26,7 @@
 
                     <div class="row justify-content-md-center">
                         <div class="col col-lg-8">
-                            <form:form method="post" id="addProduct" action="admin" modelAttribute="admAddProduct" enctype="multipart/form-data">
+                            <form:form method="post" id="addProduct" action="admin" modelAttribute="productVal" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <form:label for="productName" path="name">Product name</form:label>
                                     <form:input maxlength="50" type="text" class="form-control" id="productName" path="name"/>

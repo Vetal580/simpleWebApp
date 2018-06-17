@@ -4,7 +4,7 @@
     <hr>
     <div class="card">
         <c:if test="${empty productList }">
-            <h3 class="alert alert-danger">You didn`t put any item to cart</h3>
+            <h4 class="alert alert-danger">You didn`t put any item to cart</h4>
         </c:if>
         <c:if test="${not empty productList }">
             <table class="table table-hover shopping-cart-wrap">

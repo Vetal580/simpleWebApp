@@ -25,7 +25,7 @@
                         </c:if>
                     <div class="row justify-content-md-center">
                         <div class="col col-lg-8">
-                            <form:form method="post" id="editProduct" action="/edit-product/${productedit.id}" modelAttribute="productedit" enctype="multipart/form-data">
+                            <form:form method="post" id="editProduct" action="/edit-product/${productVal.id}" modelAttribute="productVal" enctype="multipart/form-data">
                                 <div class="form-group">
                                     <form:input type="text" class="form-control" id="productId" path="id" readonly="true"/>
                                 </div>

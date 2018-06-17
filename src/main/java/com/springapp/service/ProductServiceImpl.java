@@ -1,5 +1,6 @@
 package com.springapp.service;
 
+import com.springapp.dao.CategoryDao;
 import com.springapp.dao.CategoryDaoImpl;
 import com.springapp.dao.ProductDao;
 import com.springapp.model.Product;
@@ -15,15 +16,13 @@ import java.util.*;
 @Service
 public class ProductServiceImpl implements ProductService{
     @Autowired ProductDao productDao;
-    @Autowired CategoryServiceImpl categoryServiceImpl;
-    @Autowired CategoryDaoImpl categoryDaoImpl;
+    @Autowired CategoryService categoryService;
+    @Autowired CategoryDao categoryDao;
 
     @Override
     public List<Product> getProductsFromCategory(String id){
-        ArrayList<Product> products = (ArrayList<Product>) productDao.getProductByCategory(id);
-        for (int i = 0; i < products.size(); i++) {
-            products.get(i).setImagesList(Arrays.asList(products.get(i).getImage().split(",")));
-        }
+        List<Product> products = productDao.getProductByCategory(id);
+        products = setImageList(products);
         return products;
     }
 
@@ -37,9 +36,7 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public List<Product> getAllProducts(){
         List<Product> productList = productDao.getAllProducts();
-        for (int i = 0; i < productList.size(); i++) {
-            productList.get(i).setImagesList(Arrays.asList(productList.get(i).getImage().split(",")));
-        }
+        productList = setImageList(productList);
         return productList;
     }
 
@@ -50,7 +47,6 @@ public class ProductServiceImpl implements ProductService{
 
         for (CommonsMultipartFile multipartFile : commonsMultipartFiles){
             FileCopyUtils.copy(multipartFile.getBytes(), new File("D:\\springapp\\src\\main\\webapp\\resources\\images\\products\\"+File.separator +multipartFile.getOriginalFilename()));
-
             fileNames.add(multipartFile.getOriginalFilename());
         }
         return fileNames;
@@ -69,5 +65,21 @@ public class ProductServiceImpl implements ProductService{
     @Override
     public void deleteProduct(String id){
         productDao.deleteProduct(id);
+    }
+
+    @Override
+    public List<Product> searchProduct(String productName) {
+        List<Product> productList = productDao.productSearch(productName);
+        productList = setImageList(productList);
+        return productList;
+    }
+
+    @Override
+    public List<Product> setImageList(List<Product> products) {
+        List<Product> productList = products;
+        for (int i = 0; i < productList.size(); i++) {
+            productList.get(i).setImagesList(Arrays.asList(productList.get(i).getImage().split(",")));
+        }
+        return productList;
     }
 }

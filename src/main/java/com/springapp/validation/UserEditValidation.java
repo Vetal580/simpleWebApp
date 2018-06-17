@@ -1,6 +1,7 @@
 package com.springapp.validation;
 
 import com.springapp.model.User;
+import com.springapp.service.UserService;
 import com.springapp.service.UserServiceImpl;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,8 +11,7 @@ import org.springframework.validation.Validator;
 
 @Repository
 public class UserEditValidation implements Validator {
-    @Autowired
-    UserServiceImpl userServiceImpl;
+    @Autowired UserService userService;
 
     @Override
     public boolean supports(Class<?> aClass) {

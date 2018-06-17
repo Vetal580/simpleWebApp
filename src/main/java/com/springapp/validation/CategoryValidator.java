@@ -1,7 +1,7 @@
 package com.springapp.validation;
 
 import com.springapp.model.Category;
-import com.springapp.service.CategoryServiceImpl;
+import com.springapp.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.validation.Errors;
@@ -9,8 +9,7 @@ import org.springframework.validation.Validator;
 
 @Repository
 public class CategoryValidator implements Validator {
-    @Autowired
-    CategoryServiceImpl categoryServiceImpl;
+    @Autowired CategoryService categoryService;
 
     @Override
     public boolean supports(Class<?> aClass) {
@@ -29,7 +28,7 @@ public class CategoryValidator implements Validator {
             errors.rejectValue("categoryName", "category.name.empty.error");
         }
 
-        if (categoryServiceImpl.categoryValidation(category.getCategoryName()) == 1){
+        if (categoryService.categoryValidation(category.getCategoryName()) == 1){
             errors.rejectValue("categoryName", "category.name.unique.error");
         }
     }

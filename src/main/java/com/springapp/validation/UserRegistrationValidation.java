@@ -1,7 +1,7 @@
 package com.springapp.validation;
 
 import com.springapp.model.User;
-import com.springapp.service.UserServiceImpl;
+import com.springapp.service.UserService;
 import org.apache.commons.validator.routines.EmailValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -10,8 +10,7 @@ import org.springframework.validation.Validator;
 
 @Repository
 public class UserRegistrationValidation implements Validator {
-    @Autowired
-    UserServiceImpl service;
+    @Autowired UserService service;
 
     @Override
     public boolean supports(Class<?> aClass) {

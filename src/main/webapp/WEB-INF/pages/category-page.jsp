@@ -15,7 +15,7 @@
     <div class="row">
         <div class="card-group">
             <c:forEach var="product" items="${product}">
-                <div class=".col-xl-3 col-lg-3">
+                <div class="col-sm-3 col-xl-3 col-lg-3 col-md-3">
                     <div class="card" style="height: 460px; width: 250px; margin-bottom: 30px">
                         <c:if test="${product.inStock==1}">
                             <h5 class="text-center"><span class="product-category-instock">In Stock</span></h5>

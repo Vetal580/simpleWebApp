@@ -11,4 +11,5 @@ public interface ProductDao {
     Map<String, String> getInStockList();
     void updateProduct(Product product);
     void deleteProduct(String id);
+    List<Product> productSearch(String name);
 }

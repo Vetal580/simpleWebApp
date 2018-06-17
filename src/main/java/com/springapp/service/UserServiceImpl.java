@@ -1,5 +1,6 @@
 package com.springapp.service;
 
+import com.springapp.dao.UserDao;
 import com.springapp.dao.UserDaoImpl;
 import com.springapp.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService{
 
-    @Autowired private UserDaoImpl userDao;
+    @Autowired private UserDao userDao;
     org.springframework.security.crypto.password.PasswordEncoder encoder = new org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder();
 
     @Override

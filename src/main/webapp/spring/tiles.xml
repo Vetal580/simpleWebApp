@@ -76,4 +76,9 @@
         <put-attribute name="body" value="/WEB-INF/pages/adm-editseparcategory-page.jsp"/>
     </definition>
 
+    <definition name="search" extends="DefaultTemplate">
+        <put-attribute name="title" value="Search Result"/>
+        <put-attribute name="body" value="/WEB-INF/pages/search-page.jsp"/>
+    </definition>
+
 </tiles-definitions>

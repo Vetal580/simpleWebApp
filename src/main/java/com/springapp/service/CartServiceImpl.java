@@ -14,7 +14,7 @@ import java.util.List;
 @Scope(value = "session", proxyMode = ScopedProxyMode.TARGET_CLASS)
 public class CartServiceImpl implements Serializable, CartService{
     @Autowired
-    ProductServiceImpl productServiceImpl;
+    ProductService productService;
     private List<Product> productList = new ArrayList<>();
 
     @Override
@@ -29,7 +29,7 @@ public class CartServiceImpl implements Serializable, CartService{
 
     @Override
     public void addProductToCart(String id){
-        Product product = productServiceImpl.getProductById(id);
+        Product product = productService.getProductById(id);
         productList.add(product);
     }
 

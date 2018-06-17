@@ -130,4 +130,30 @@ public class ProductDaoImpl implements ProductDao {
         }
     }
 
+    @Override
+    public List<Product> productSearch(String name) {
+        List<Product> productList = new ArrayList<>();
+        String search = "SELECT * FROM product WHERE name LIKE '%"+name+"%'";
+
+        try (Connection connection = source.getConnection()) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(search);
+
+            while (resultSet.next()){
+                Product product = new Product();
+                product.setId(resultSet.getInt(1));
+                product.setName(resultSet.getString(2));
+                product.setPrice(resultSet.getString(3));
+                product.setCategory(resultSet.getString(4));
+                product.setImage(resultSet.getString(5));
+                product.setInStock(resultSet.getInt(6));
+                product.setDescription(resultSet.getString(7));
+                product.setShortDescription(resultSet.getString(8));
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return productList;
+    }
 }

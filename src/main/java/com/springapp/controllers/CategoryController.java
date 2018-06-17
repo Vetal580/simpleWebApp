@@ -1,7 +1,8 @@
 package com.springapp.controllers;
 
 import com.springapp.model.Category;
-import com.springapp.service.CategoryServiceImpl;
+import com.springapp.model.Search;
+import com.springapp.service.CategoryService;
 import com.springapp.validation.CategoryValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,40 +11,39 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @Controller
 public class CategoryController {
-    @Autowired CategoryServiceImpl categoryServiceImpl;
+    @Autowired CategoryService categoryService;
     @Autowired CategoryValidator categoryValidator;
+    @Autowired Search search;
 
-    @InitBinder
+    @InitBinder (value = "category")
     private void initBinder(WebDataBinder binder) {
         binder.setValidator(categoryValidator);
     }
 
     @RequestMapping(value = "/admcategoryedit", method = RequestMethod.GET)
-    public ModelAndView categoryEdit(Model model){
-        List<Category> categoryList = categoryServiceImpl.getCategoryList();
+    public String categoryEdit(Model model){
+        List<Category> categoryList = categoryService.getCategoryList();
         model.addAttribute("categoryList", categoryList);
-
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("category", new Category());
-        modelAndView.setViewName("admcategoryedit");
-        return modelAndView;
+        model.addAttribute("category", new Category());
+        model.addAttribute("search", search);
+        return "admcategoryedit";
     }
 
     @RequestMapping (value = "/admcategoryedit", method = RequestMethod.POST)
     public String addCategory(@ModelAttribute("category") @Validated Category category, BindingResult result, Model model){
+        model.addAttribute("search", search);
         if (result.hasErrors()){
-            List<Category> categoryList = categoryServiceImpl.getCategoryList();
+            List<Category> categoryList = categoryService.getCategoryList();
             model.addAttribute("categoryList", categoryList);
             return "admcategoryedit";
         } else {
-            categoryServiceImpl.addCategory(category);
-            List<Category> categoryList = categoryServiceImpl.getCategoryList();
+            categoryService.addCategory(category);
+            List<Category> categoryList = categoryService.getCategoryList();
             model.addAttribute("categoryList", categoryList);
             model.addAttribute("categoryAdded", "New Category Successful added!");
             return "admcategoryedit";
@@ -51,20 +51,20 @@ public class CategoryController {
     }
 
     @RequestMapping(value = "/edit-category/{id}", method = RequestMethod.GET)
-    public ModelAndView editCategory(@PathVariable String id){
-        Category category = categoryServiceImpl.getCategoryById(id);
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.addObject("category", category);
-        modelAndView.setViewName("admseparatecatedit");
-        return modelAndView;
+    public String editCategory(@PathVariable String id, Model model){
+        Category category = categoryService.getCategoryById(id);
+        model.addAttribute("category", category);
+        model.addAttribute("search", search);
+        return "admseparatecatedit";
     }
 
     @RequestMapping(value = "/edit-category/{id}", method = RequestMethod.POST)
     public String editCategoryResult(@ModelAttribute ("category") @Validated Category category, BindingResult result, Model model){
+        model.addAttribute("search", search);
         if (result.hasErrors()){
             return "admseparatecatedit";
         } else {
-            categoryServiceImpl.updateCategory(category);
+            categoryService.updateCategory(category);
             model.addAttribute("updated", "Category was successful updated!");
             return "admseparatecatedit";
         }
@@ -73,7 +73,7 @@ public class CategoryController {
     @RequestMapping (value = "/deletecategory/{id}", method = RequestMethod.GET)
     @ResponseBody
     public String deleteCategory(@PathVariable String id){
-        categoryServiceImpl.deleteCategory(id);
+        categoryService.deleteCategory(id);
         return "admcategoryedit";
     }
 }

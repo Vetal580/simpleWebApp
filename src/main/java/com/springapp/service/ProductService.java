@@ -3,6 +3,7 @@ package com.springapp.service;
 import com.springapp.model.Product;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -14,4 +15,6 @@ public interface ProductService {
     LinkedHashMap<String, String> getInStockList();
     void updateProduct(Product product);
     void deleteProduct(String id);
+    List<Product> searchProduct(String productName);
+    List<Product> setImageList(List<Product> products);
 }

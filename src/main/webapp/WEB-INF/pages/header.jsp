@@ -5,8 +5,8 @@
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbar">
+        <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <security:authorize access="isAnonymous()">
             <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/cart"><span class = "glyphicon glyphicon-shopping-cart"></span> Cart</a></li>
@@ -25,6 +25,13 @@
             </security:authorize>
             </li>
         </ul>
+
+        <%--@elvariable id="search" type="com.springapp.model.Search"--%>
+        <form:form class="form-inline my-2 my-lg-0" id="search-form" action="${pageContext.request.contextPath}/search" modelAttribute="search">
+            <form:input class="form-control mr-sm-2" id="search" type="text" placeholder="Search" path="searchRow"/>
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form:form>
     </div>
 </nav>
-</div>
+
+<script type="text/javascript" src="<c:url value='/resources/js/main.js'/>"></script>
