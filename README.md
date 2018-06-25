@@ -24,6 +24,6 @@
 
 MySQL database is stored on a remote server. All you need to configure the program on your PC - Internet connection, change the root folder of the project location in the `productImageUpload` method of `ProductServiceImpl` class and configure Apache Tomcat Server.
 
-Video demonstration of program functionality - [Link](https://youtu.be/cLUOYdsESG0)
+Video demonstration of program functionality - [Link](https://youtu.be/Syz_K3d6TQo)
 
 The amount of time spent writing a task: ~75 hours in 4 weeks.
