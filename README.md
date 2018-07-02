@@ -1,4 +1,4 @@
-#Java test assignment for a Java Trainee position. Simple Web-App, which demonstrate classic Web-Store. 
+#Simple Web-App, which demonstrate classic Web-Store. 
 
 ###Technology Stack:
 - Spring MVC;
